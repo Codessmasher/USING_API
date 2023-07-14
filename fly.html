@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bird</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<div class="body">
+
+  <audio src="shot.mp3" id="sht" preload="auto"></audio>  
+
+    <h2 id="scorebox">Your Score is <span id="score"></span></h2>  
+    <button id="replay">REPLAY</button>
+    <img  src="https://media.tenor.com/J_0i11cOZmcAAAAj/bird.gif" width="100px" id="brd1" class="brd" onclick="die('brd1')">
+    <img  src="https://media.tenor.com/J_0i11cOZmcAAAAj/bird.gif" width="100px" id="brd2" class="brd" onclick="die('brd2')">
+    <img  src="https://media.tenor.com/J_0i11cOZmcAAAAj/bird.gif" width="100px" id="brd3" class="brd" onclick="die('brd3')">
+    <img  src="https://media.tenor.com/J_0i11cOZmcAAAAj/bird.gif" width="100px" id="brd4" class="brd" onclick="die('brd4')">
+
+</div> 
+<script>
+    let score=0;   
+    let die=(id)=>{
+        score++; 
+        document.getElementById('sht').play();
+        var b=document.getElementById(id);
+        b.style.display='none';
+        b.style.transform='rotate(30deg)'; 
+    } 
+    setInterval(()=>{
+        document.getElementById("score").innerHTML=score;
+        if(score==4){
+        let score=document.getElementById('scorebox');
+        score.style.position="absolute"; 
+        score.style.top="30%";
+        score.style.left="50%";
+        score.style.translate="-50%";
+        score.style.color="green";
+        score.innerHTML="You have won the game";
+
+        let replay=document.getElementById('replay');
+        replay.style.display="block";
+        replay.addEventListener("click",()=>{
+            location.reload();
+        }) 
+    }
+    },1000)
+</script>
